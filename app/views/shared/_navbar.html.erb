@@ -1,7 +1,8 @@
 <!-- Navbar-->
 <header class="header">
-    <nav class="navbar navbar-expand-lg fixed-top py-3">
-        <div class="container"><a href="#" class="navbar-brand font-weight-bold"><strong>Book Matcher</strong></a>
+    <nav class="navbar navbar-expand-lg bg-dark py-3">
+        <div class="container">
+        <strong> <%= link_to 'Book Matcher', root_path, class: 'navbar-brand font-weight-bold' %></strong>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
           <!-- SIGNED IN Navbar-->
@@ -9,7 +10,8 @@
           <% if user_signed_in? %>
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav d-flex" style='margin-left: auto; margin-right: 0;'>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Books</a></li>
+                    <li class="nav-item">
+                    <%= link_to 'Books', books_path, class: 'nav-link text-uppercase font-weight-bold' %></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Readers</a></li>
                     <li class="dropdown nav-item">
                     <a class="dropdown-toggle nav-link text-uppercase font-weight-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style='text-decoration:none;'>

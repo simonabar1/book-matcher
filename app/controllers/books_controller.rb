@@ -3,15 +3,16 @@ class BooksController < ApplicationController
 
   def index
     @query = params[:q]
-    if @query.present?
-      books_api = Google::Apis::BooksV1::BooksService.new
-      books_api.key = ENV['GOOGLE_BOOKS_KEY']
-      @books = books_api.list_volumes(@query)
-    else
-      rating_query = "averageRating:>4"
-      books_api = Google::Apis::BooksV1::BooksService.new
-      books_api.key = ENV['GOOGLE_BOOKS_KEY']
-      @books = books_api.list_volumes(rating_query, max_results: 30)
-    end
+    @genre = params[:genre]
+
+    books_api = Google::Apis::BooksV1::BooksService.new
+    books_api.key = ENV['GOOGLE_BOOKS_KEY']
+
+    # Build the query parameters based on the selected genre
+    query_params = @query.present? ? { q: @query } : { q: "averageRating:>4" }
+    query_params[:subject] = @genre if @genre.present?
+
+    # Query the Books API
+    @books = books_api.list_volumes(query_params, max_results: 30)
   end
 end
