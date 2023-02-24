@@ -1,0 +1,28 @@
+
+
+<%= form_tag books_path, method: :get do %>
+  <%= text_field_tag :q, params[:q], placeholder: 'Enter a book title, author, or keyword' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+
+<% if @books.present? %>
+  <ul>
+  <% @books.items.each do |book| %>
+    <li>
+      <% if book.volume_info.image_links %>
+        <%= image_tag(book.volume_info.image_links.thumbnail) %>
+      <% end %>
+      <h2><%= book.volume_info.title %></h2>
+      <% if book.volume_info.authors %>
+        <p><%= book.volume_info.authors.join(', ') %></p>
+      <% end %>
+      <% if book.volume_info.description %>
+        <p><%= book.volume_info.description %></p>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>No results found</p>
+<% end %>
