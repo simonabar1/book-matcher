@@ -1,12 +1,13 @@
 <div class="container m-auto p-4">
 
-<div class='p-4' style='text-align:center'>
-  <%= form_tag books_path, method: :get do %>
-    <%= text_field_tag :q, params[:q], placeholder: 'Enter a book title, author, or keyword' %>
-    <%= select_tag :genre, options_for_select(['', 'Fiction', 'Nonfiction', 'Mystery', 'Romance', 'Thriller', 'Science Fiction']), prompt: 'Filter by Genre' %>
-    <%= submit_tag 'Search', class: 'btn btn-dark'%>
+<div class="d-flex justify-content-center">
+  <%= form_with(url: books_path, method: :get) do |form| %>
+    <%= form.text_field :q, value: params[:q], placeholder: 'Enter a book title, author, or keyword' %>
+    <%= form.select :genre, ['Fiction', 'Nonfiction', 'Mystery', 'Romance', 'Thriller', 'Science Fiction'], { prompt: 'Filter by Genre' }, { class: '' } %>
+    <%= form.submit 'Search', class: 'btn btn-dark' %>
   <% end %>
 </div>
+
 
 
   <% if @books.present? %>
@@ -15,9 +16,9 @@
 
    <div class="card mb-3">
   <div class="row g-0">
-    <div class="col-md-4">
+    <div class="col-md-4 text-center align-middle m-auto p-4">
       <% if book.volume_info.image_links %>
-          <%= image_tag(book.volume_info.image_links.thumbnail) %>
+          <%= image_tag(book.volume_info.image_links.thumbnail)  %>
       <% end %>
     </div>
     <div class="col-md-8">

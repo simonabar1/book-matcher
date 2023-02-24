@@ -12,15 +12,15 @@
                 <ul class="navbar-nav d-flex" style='margin-left: auto; margin-right: 0;'>
                     <li class="nav-item">
                     <%= link_to 'Books', books_path, class: 'nav-link text-uppercase font-weight-bold' %></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Readers</a></li>
+                    <%= link_to 'Readers', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
                     <li class="dropdown nav-item">
                     <a class="dropdown-toggle nav-link text-uppercase font-weight-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style='text-decoration:none;'>
                       My Profile
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <%= link_to 'My Details', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
+                      <li><a class="" href="#">Another action</a></li>
                       <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
                     </ul>
                 </ul>
