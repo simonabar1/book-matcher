@@ -19,7 +19,7 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <%= link_to 'My Profile', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
+                    <%= link_to 'My Profile', user_path(current_user), class: 'nav-link text-uppercase font-weight-bold' %></li>
                     <%= link_to 'My Books', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
                     <%= link_to 'My Follows', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
                       <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
