@@ -3,6 +3,20 @@ All Time Winners:
 
 <% @users.each do |user| %>
 <%= user.nickname %>
+
+
+<% unless current_user.following?(user) %>
+  <%= form_with url: follow_user_path(user), method: :post do %>
+    <%= submit_tag "Follow", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<% if current_user.following?(user) %>
+  <%= form_with url: unfollow_user_path(user), method: :delete do %>
+    <%= submit_tag "Unfollow", class: "btn btn-danger" %>
+  <% end %>
+<% end %>
+
 <% end %>
 
 
