@@ -1,44 +1,22 @@
-<!-- Navbar-->
-<header class="header">
-    <nav class="navbar navbar-expand-lg bg-dark py-3">
-        <div class="container">
-        <strong> <%= link_to 'Book Matcher', root_path, class: 'navbar-brand font-weight-bold' %></strong>
-            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html" style='font-weight: bold'>BookMatch</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Feed</a></li>
+                            <li class="nav-item"><%= link_to 'Books', books_path, class: 'nav-link' %></li>
+                            <li class="nav-item"><%= link_to 'Readers', users_path, class: 'nav-link' %></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="blog-home.html">My Profile</a></li>
+                                    <li><a class="dropdown-item" href="blog-home.html">My Books</a></li>
+                                    <li><a class="dropdown-item" href="blog-post.html">My Follows</a></li>
+                                </ul>
+                            </li>
 
-          <!-- SIGNED IN Navbar-->
-
-          <% if user_signed_in? %>
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav d-flex" style='margin-left: auto; margin-right: 0;'>
-                    <li class="nav-item">
-                    <%= link_to 'Books', books_path, class: 'nav-link text-uppercase font-weight-bold' %></li>
-                    <%= link_to 'Readers', users_path, class: 'nav-link text-uppercase font-weight-bold' %></li>
-                    <li class="dropdown nav-item">
-                    <a class="dropdown-toggle nav-link text-uppercase font-weight-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style='text-decoration:none;'>
-                      My Profile
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <%= link_to 'My Profile', user_path(current_user), class: 'nav-link text-uppercase font-weight-bold' %></li>
-                    <%= link_to 'My Books', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
-                    <%= link_to 'My Follows', '#', class: 'nav-link text-uppercase font-weight-bold' %></li>
-                      <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
-                    </ul>
-                </ul>
-            </div>
-
-          <!-- SIGNED OUT Navbar-->
-
-          <% else %>
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav d-flex" style='margin-left: auto; margin-right: 0;'>
-                    <li class="nav-item"><%= link_to 'Login', new_user_session_path, class: 'nav-link text-uppercase font-weight-bold' %></li>
-                    <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link text-uppercase font-weight-bold btn btn-outline-light' %></li>
-                </ul>
-            </div>
-
-          <% end %>
-
-        </div>
-    </nav>
-</header>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
