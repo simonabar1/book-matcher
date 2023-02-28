@@ -1,11 +1,8 @@
-class AddIndexToUsersEmailAndNickname < ActiveRecord::Migration[7.0]
+class CreateBooksUsersJoinTable < ActiveRecord::Migration[7.0]
   def change
-    unless index_exists?(:users, :email)
-      add_index :users, :email, unique: true
-    end
-
-    unless index_exists?(:users, :nickname)
-      add_index :users, :nickname, unique: true
+    create_join_table :books, :users do |t|
+      t.boolean :read, default: false
+      t.index [:book_id, :user_id]
     end
   end
 end

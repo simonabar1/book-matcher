@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @most_followed = User.all.sort_by { |user| -user.followers.count }.take(3)
+    @most_read = User.all.sort_by { |user| -user.books.count }.take(3)
+
 
   end
 
