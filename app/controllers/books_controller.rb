@@ -17,4 +17,6 @@ class BooksController < ApplicationController
     # Query the Books API
     @books = books_api.list_volumes(query_params, max_results: 30)
   end
+
+
 end

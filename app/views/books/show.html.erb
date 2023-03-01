@@ -1,0 +1,18 @@
+<div class="container">
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="<%= @book.volume_info.image_links.thumbnail %>" class="img-fluid rounded-start">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= @book.volume_info.title %></h5>
+        <p class="card-text"><%= @book.volume_info.authors.to_s.delete('["]')  %></p>
+        <p class="card-text"><%= @book.volume_info.description %></p>
+        <p class="card-text"><small class="text-muted"><%= @book.volume_info.published_date %></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

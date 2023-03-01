@@ -1,74 +1,45 @@
-<div class="container m-auto p-4">
-
-  <div class="d-flex justify-content-center">
-    <%= form_with(url: books_path, method: :get) do |form| %>
-      <%= form.text_field :q, value: params[:q], placeholder: 'Enter a book title, author, or keyword' %>
-      <%= form.select :genre, ['Fiction', 'Nonfiction', 'Mystery', 'Romance', 'Thriller', 'Science Fiction'], { prompt: 'Filter by Genre' }, { class: '' } %>
-      <%= form.submit 'Search', class: 'btn btn-dark' %>
-    <% end %>
-  </div>
+<div class="container p-4" style='margin: 30px auto'>
 
 
+<div class="d-flex justify-content-center my-4">
+  <%= form_with(url: books_path, method: :get) do |form| %>
+    <div class="input-group">
+      <%= form.text_field :q, value: params[:q], placeholder: 'Enter a book title, author, or keyword', class: 'form-control rounded-0 border-end-0' %>
+      <%= form.select :genre, ['Fiction', 'Nonfiction', 'Mystery', 'Romance', 'Thriller', 'Science Fiction'], { prompt: 'Filter by Genre' }, { class: 'form-select rounded-0 border-start-0' } %>
+      <button class="btn btn-dark rounded-0" type="submit" style="background-color: #00b4db">Search</button>
+    </div>
+  <% end %>
+</div>
 
-  <% if @books.present? %>
 
-    <div class="row m-auto justify-content-center">
-      <% @books.items.each do |book| %>
-
-        <div class="col-md-4">
-
-          <div class="card book-card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4 text-center align-middle m-auto p-4">
-                <% if book.volume_info.image_links %>
-                  <%= image_tag(book.volume_info.image_links.thumbnail) %>
-                <% end %>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"><%= book.volume_info.title %></h5>
-                  <p class="card-text" style='font-weight: bold; '><%= book.volume_info.authors.to_s.delete('["]')  %></p>
-                  <p class="card-text" ><%= book.volume_info.categories %></p>
-                  <p class="card-text"><small class="text-muted"></small></p>
-                </div>
-              </div>
+<% if @books.present? %>
+  <div class="row m-auto justify-content-center">
+    <% @books.items.each do |book| %>
+      <div class="col-md-2 mb-4">
+        <div class="card book-card">
+          <div class="card-img-container">
+            <img src="<%= book.volume_info.image_links.thumbnail %>" class="card-img-top" style="height: 100%; object-fit: cover;">
+            <div class="card-img-overlay">
+              <h5 class="card-title mb-0"><%= book.volume_info.title %></h5>
+              <p class="card-text mb-0"><%= book.volume_info.authors.to_s.delete('["]')  %></p>
             </div>
           </div>
-
+          <div class="card-details">
+            <div class="card-details-inner">
+              <p class="card-text mb-3"><%= book.volume_info.title %></p>
+              <%= link_to 'Details', book_path(book), class: 'btn btn-primary mb-3' %>
+              <p class="card-text"><small class="text-muted"><%= book.volume_info.authors.to_s.delete('["]')  %></small></p>
+            </div>
+          </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No results found</p>
+<% end %>
 
-  <% else %>
-    <p>No results found</p>
-  <% end %>
+
 
 
 </div>
-
-   <div class="book-cell">
-    <div class="book-img">
-     <img src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg" alt="" class="book-photo">
-    </div>
-    <div class="book-content">
-     <div class="book-title">BIG MAGIC</div>
-     <div class="book-author">by Elizabeth Gilbert</div>
-     <div class="rate">
-      <fieldset class="rating">
-       <input type="checkbox" id="star5" name="rating" value="5" />
-       <label class="full" for="star5"></label>
-       <input type="checkbox" id="star4" name="rating" value="4" />
-       <label class="full" for="star4"></label>
-       <input type="checkbox" id="star3" name="rating" value="3" />
-       <label class="full" for="star3"></label>
-       <input type="checkbox" id="star2" name="rating" value="2" />
-       <label class="full" for="star2"></label>
-       <input type="checkbox" id="star1" name="rating" value="1" />
-       <label class="full" for="star1"></label>
-      </fieldset>
-      <span class="book-voters">1.987 voters</span>
-     </div>
-     <div class="book-sum">Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years. </div>
-     <div class="book-see">See The Book</div>
-    </div>
-   </div>
